@@ -1,0 +1,21 @@
+@startuml
+
+
+class Client
+class AbstractDriver
+class DriverFacade
+
+
+package Drawer {  
+    class DrawPanelController
+}
+
+package Job2dMagic{
+    interface Job2dDriver
+}
+
+Client -right-> AbstractDriver : <<use>>
+DriverFacade --> DrawPanelController 
+AbstractDriver -up-|> Job2dDriver : <<implements>>
+AbstractDriver <|-down- DriverFacade : <<extends>>
+@enduml
