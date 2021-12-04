@@ -8,10 +8,10 @@ import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.drivers.LineManager;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 
-public class DriverAdapter extends AbstractDriver implements Job2dDriver {
+public class DriverFacade extends AbstractDriver {
     private final DrawPanelController controller;
 
-    public DriverAdapter() {
+    public DriverFacade() {
         super(0, 0);
         this.controller = DrawerFeature.getDrawerController();
     }
@@ -35,6 +35,11 @@ public class DriverAdapter extends AbstractDriver implements Job2dDriver {
 
             this.controller.drawLine(line);
             this.setPosition(i, i1);
+    }
+
+    @Override
+    public String toString() {
+        return "Driver Facade";
     }
 
 }

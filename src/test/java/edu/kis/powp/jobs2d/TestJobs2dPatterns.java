@@ -11,7 +11,7 @@ import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.LineManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelAdapter;
-import edu.kis.powp.jobs2d.drivers.adapter.DriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.DriverFacade;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -70,8 +70,8 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriverDottedLine = new LineDrawerAdapter();
 		DriverFeature.addDriver("Special Line Simulator", testDriverDottedLine);
 
-		Job2dDriver testAbstactDriver = new DriverAdapter();
-		DriverFeature.addDriver("DriverAdapter Simulator", testAbstactDriver);
+		Job2dDriver testAbstactDriver = new DriverFacade();
+		DriverFeature.addDriver("DriverFacade Simulator", testAbstactDriver);
 
 		DriverFeature.updateDriverInfo();
 	}
