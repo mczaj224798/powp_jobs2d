@@ -1,0 +1,5 @@
+3.2
+Pytanie 5
+Kiedy warto (lub trzeba) korzystać z adaptera klasy (wariant z projektu stażysty)?
+
+Z adapatera klasy korzystami kiedy chcemy korzystać z klasy bez ingerencji w jej implementacje. (stworzenie wrappera dla klasy)
