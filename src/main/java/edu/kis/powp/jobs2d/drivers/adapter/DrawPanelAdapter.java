@@ -14,17 +14,19 @@ import javax.sound.sampled.Line;
  */
 public class DrawPanelAdapter implements Job2dDriver {
 	private int startX = 0, startY = 0;
-	private DrawPanelController controller;
+	private final DrawPanelController controller;
 
 	public DrawPanelAdapter() {
 		this.controller = DrawerFeature.getDrawerController();
 	}
 
+	@Override
 	public void setPosition(int x, int y) {
 		this.startX = x;
 		this.startY = y;
 	}
 
+	@Override
 	public void operateTo(int x, int y) {
 		ILine line;
 		switch (LineManager.getCurrentLineType()) {

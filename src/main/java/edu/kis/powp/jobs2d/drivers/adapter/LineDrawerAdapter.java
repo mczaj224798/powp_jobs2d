@@ -21,11 +21,13 @@ public class LineDrawerAdapter implements Job2dDriver {
 		this.controller = DrawerFeature.getDrawerController();
 	}
 
+	@Override
 	public void setPosition(int x, int y) {
 		this.startX = x;
 		this.startY = y;
 	}
 
+	@Override
 	public void operateTo(int x, int y) {
 		// Iline line = LineFactory.getSpecialLine();
 		// changed due to 3.3.3
