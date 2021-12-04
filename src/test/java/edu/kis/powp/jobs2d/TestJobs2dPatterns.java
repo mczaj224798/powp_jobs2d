@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.jobs2d.drivers.LineManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -54,10 +55,10 @@ public class TestJobs2dPatterns {
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
 		Job2dDriver testDriver = new DrawPanelAdapter();
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		DriverFeature.addDriver("Normal Line Simulator", testDriver);
 
 		Job2dDriver testDriverDottedLine = new LineDrawerAdapter();
-		DriverFeature.addDriver("LineDrawer Simulator", testDriverDottedLine);
+		DriverFeature.addDriver("Special Line Simulator", testDriverDottedLine);
 
 		DriverFeature.updateDriverInfo();
 	}
@@ -93,6 +94,21 @@ public class TestJobs2dPatterns {
 	}
 
 	/**
+	 * Setup menu for line options.
+	 *
+	 * @param application Application context.
+	 */
+	private static void setupLine(Application application) {
+		application.addComponentMenu(LineManager.class, "Line", 0);
+		application.addComponentMenuElement(LineManager.class, "Normal",
+				(ActionEvent e) -> LineManager.setCurrentLineType(LineManager.LineType.NORMAL));
+		application.addComponentMenuElement(LineManager.class, "Dotted",
+				(ActionEvent e) -> LineManager.setCurrentLineType(LineManager.LineType.DOTTED));
+		application.addComponentMenuElement(LineManager.class, "Special",
+				(ActionEvent e) -> LineManager.setCurrentLineType(LineManager.LineType.SPECIAL));
+	}
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -106,6 +122,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				setupLine(app);
 
 				app.setVisibility(true);
 			}
