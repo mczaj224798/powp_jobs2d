@@ -13,6 +13,8 @@ import edu.kis.powp.jobs2d.drivers.LineManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.DriverFacade;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
+import edu.kis.powp.jobs2d.drivers.factories.FigureFactory;
+import edu.kis.powp.jobs2d.drivers.factories.FigureScriptFactory;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
@@ -49,9 +51,42 @@ public class TestJobs2dPatterns {
 			}
 		};
 
+		ActionListener selectTestFigureTriangleListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				FigureFactory.getFigure(FigureFactory.Figure.TRIANGLE).execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		ActionListener selectTestFigureRectangleListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				FigureFactory.getFigure(FigureFactory.Figure.RECTANGLE).execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		ActionListener selectFigureScript1FromBuilderListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				FigureScriptFactory.getFigureScript1().execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		ActionListener selectFigureScript2FromBuilderListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				FigureScriptFactory.getFigureScript2().execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
 		application.addTest("Figure Jane", selectTestFigureOptionListener3);
+		application.addTest("Triangle", selectTestFigureTriangleListener);
+		application.addTest("Rectangle", selectTestFigureRectangleListener);
+		application.addTest("Figure Joe 1 - builder", selectFigureScript1FromBuilderListener);
+		application.addTest("Figure Joe 2 - builder", selectFigureScript2FromBuilderListener);
+
 	}
 
 	/**
@@ -60,6 +95,9 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupDrivers(Application application) {
+
+
+
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
